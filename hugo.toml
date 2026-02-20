@@ -55,31 +55,31 @@ buildExpired = false
 [[menu.main]]
   identifier = 'home'
   name = 'Trang chủ'
-  pageRef = '/'
+  url = ''
   weight = 10
 
 [[menu.main]]
   identifier = 'archives'
   name = 'Lưu trữ'
-  pageRef = 'archives'
+  url = 'archives/'
   weight = 30
 
 [[menu.main]]
   identifier = 'tags'
   name = 'Thẻ'
-  pageRef = 'tags'
+  url = 'tags/'
   weight = 40
 
 [[menu.main]]
   identifier = 'search'
   name = 'Tìm'
-  pageRef = 'search'
+  url = 'search/'
   weight = 50
 
 [[menu.main]]
   identifier = 'shop'
   name = 'Shop'
-  pageRef = 'shop'
+  url = 'shop/'
   weight = 60
 
 # Cấu hình params cho PaperMod
