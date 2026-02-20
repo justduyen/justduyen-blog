@@ -40,6 +40,8 @@
   background: #ffffff;
   border: 1px solid var(--border);
   color: var(--primary);
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 :root .profile .buttons a:hover,
