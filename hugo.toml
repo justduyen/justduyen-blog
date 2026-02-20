@@ -1,7 +1,13 @@
 baseURL = 'https://justduyen.github.io/justduyen-blog/'
-languageCode = 'en'
+languageCode = 'vi'
+defaultContentLanguage = 'vi'
+paginate = 12
+paginatePath = 'page'
 title = 'JustDuyen Blog'
 theme = 'PaperMod'
+canonifyURLs = true
+relativeURLs = false
+summaryLength = 160
 
 # Cấu hình SEO cơ bản
 enableRobotsTXT = true
@@ -83,8 +89,8 @@ buildExpired = false
   
   # Thông tin trang web
   title = 'JustDuyen Blog'
-  description = 'JustDuyen Personal Blog - Sharing knowledge and experience'
-  keywords = ['blog', 'kiến thức', 'kinh nghiệm', 'công nghệ']
+  description = 'Blog chia sẻ kiến thức, công nghệ, sách và trải nghiệm học tập.'
+  keywords = ['blog', 'kiến thức', 'kinh nghiệm', 'công nghệ', 'học tập', 'sách']
   author = 'JustDuyen'
   label = { text = "D" }
   
