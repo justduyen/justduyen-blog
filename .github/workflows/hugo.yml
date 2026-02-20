@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_ENV: production
+      HUGO_BASEURL: https://justduyen.github.io/justduyen-blog/
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,7 +30,7 @@ jobs:
           hugo-version: "latest"
           extended: true
       - name: Build
-        run: hugo --minify --gc
+        run: hugo --minify --gc --baseURL "${HUGO_BASEURL}"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
