@@ -1,0 +1,50 @@
+{{- define "main" }}
+
+{{- if .Title }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description }}
+  </div>
+  {{- end }}
+</header>
+{{- end }}
+
+{{- $type := .Type }}
+{{- $groups := dict }}
+{{- range .Data.Terms.Alphabetical }}
+  {{- $letter := substr .Name 0 1 | upper }}
+  {{- $items := index $groups $letter | default (slice) }}
+  {{- $items = $items | append . }}
+  {{- $groups = merge $groups (dict $letter $items) }}
+{{- end }}
+
+{{- $letters := slice }}
+{{- range $k, $v := $groups }}
+  {{- $letters = $letters | append $k }}
+{{- end }}
+{{- $letters = sort $letters }}
+
+<div class="terms-groups">
+  {{- range $letters }}
+    {{- $letter := . }}
+    {{- $items := index $groups $letter }}
+    <section class="terms-group">
+      <h2 class="terms-letter">{{ $letter }}</h2>
+      <ul class="terms-tags">
+        {{- range $items }}
+          {{- $name := .Name }}
+          {{- $count := .Count }}
+          {{- with site.GetPage (printf "/%s/%s" $type $name) }}
+          <li>
+            <a href="{{ .Permalink }}">{{ .Name }} <sup><strong><sup>{{ $count }}</sup></strong></sup></a>
+          </li>
+          {{- end }}
+        {{- end }}
+      </ul>
+    </section>
+  {{- end }}
+</div>
+
+{{- end }}{{/* end main */ -}}

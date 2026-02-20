@@ -1,0 +1,285 @@
+baseURL = 'https://justduyen.github.io/justduyen-blog/'
+languageCode = 'en'
+title = 'JustDuyen Blog'
+theme = 'PaperMod'
+
+# Cấu hình SEO cơ bản
+enableRobotsTXT = true
+enableGitInfo = false
+enableEmoji = true
+enableMissingTranslationPlaceholders = false
+
+# Cấu hình build
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+# Cấu hình output formats
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']
+  page = ['HTML']
+  section = ['HTML', 'RSS']
+  taxonomy = ['HTML', 'RSS']
+  term = ['HTML', 'RSS']
+
+# Cấu hình markdown
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$'], ['\\[', '\\]']]
+          inline = [['$', '$'], ['\\(', '\\)']]
+    [markup.goldmark.renderer]
+      unsafe = true
+      hardWraps = false
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = 'github'
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
+
+# Cấu hình menu
+[[menu.main]]
+  identifier = 'home'
+  name = 'Trang chủ'
+  url = '/'
+  weight = 10
+
+[[menu.main]]
+  identifier = 'archives'
+  name = 'Lưu trữ'
+  url = '/archives/'
+  weight = 30
+
+[[menu.main]]
+  identifier = 'tags'
+  name = 'Thẻ'
+  url = '/tags/'
+  weight = 40
+
+[[menu.main]]
+  identifier = 'search'
+  name = 'Tìm'
+  url = '/search/'
+  weight = 50
+
+[[menu.main]]
+  identifier = 'shop'
+  name = 'Shop'
+  url = '/shop/'
+  weight = 60
+
+# Cấu hình params cho PaperMod
+[params]
+  # Môi trường - đặt 'production' để bật SEO features
+  env = 'production'
+  
+  # Thông tin trang web
+  title = 'JustDuyen Blog'
+  description = 'JustDuyen Personal Blog - Sharing knowledge and experience'
+  keywords = ['blog', 'kiến thức', 'kinh nghiệm', 'công nghệ']
+  author = 'JustDuyen'
+  label = { text = "D" }
+  
+  # Chế độ hiển thị: 'regular', 'home-info', 'profile'
+  homeInfoParams = false
+  
+  # Theme settings
+  defaultTheme = 'auto'  # 'light', 'dark', hoặc 'auto'
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  ShowShareButtons = true
+  ShowToc = true
+  TocOpen = true
+  math = true
+  ShowRelatedPosts = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  
+  # SEO và Social Media
+  images = ['images/cover.png']  # OpenGraph và Twitter Card image
+  
+  # Main sections (các section chính hiển thị trên trang chủ)
+  mainSections = ['sach', 'toan', 'lap-trinh']
+
+  # Share buttons to display (optional override)
+  ShareButtons = ['linkedin', 'x', 'facebook', 'telegram', 'whatsapp']
+  
+  # Profile Mode (hiển thị trang chủ dạng profile)
+  [params.profileMode]
+    enabled = true
+    title = "JustDuyen"
+    subtitle = "Sharing knowledge and experience"
+    buttons = [
+      { name = "Tóm tắt & Review sách", url = "/sach/" },
+      { name = "Học phần mềm PC nhanh A-Z", url = "/phan-mem-pc/" },
+      { name = "Học ứng dụng điện thoại nhanh A-Z", url = "/ung-dung-dt/" },
+      { name = "Học lập trình nhanh A-Z", url = "/lap-trinh/" },
+      { name = "Công cụ online", url = "/cong-cu-online/" },
+      { name = "Học toán so EZ", url = "/toan/" }
+    ]
+  
+  # Schema.org settings
+  [params.schema]
+    publisherType = 'Person'  # 'Person' hoặc 'Organization'
+    sameAs = []  # Mảng các URL social media
+  
+  # Analytics (bật khi deploy production)
+  [params.analytics]
+    [params.analytics.google]
+      SiteVerificationTag = ''  # Thêm Google Search Console verification tag
+      AnalyticsID = ''  # Thêm Google Analytics ID nếu có
+    [params.analytics.bing]
+      SiteVerificationTag = ''  # Thêm Bing verification tag nếu có
+    [params.analytics.yandex]
+      SiteVerificationTag = ''  # Thêm Yandex verification tag nếu có
+  
+  # Assets (favicon, icons)
+  [params.assets]
+    favicon = 'favicon.ico'
+    favicon16x16 = 'favicon-16x16.png'
+    favicon32x32 = 'favicon-32x32.png'
+    apple_touch_icon = 'apple-touch-icon.png'
+    safari_pinned_tab = 'safari-pinned-tab.svg'
+    theme_color = '#0d1117'
+    msapplication_TileColor = '#0d1117'
+    disableFingerprinting = false
+    disableHLJS = true
+  
+  # Search settings
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ['title', 'permalink', 'summary', 'content']
+  
+  # Cover image settings
+  [params.cover]
+    hidden = false
+    hiddenInList = false
+    hiddenInSingle = false
+    width = 1200
+    height = 600
+  
+  # Edit post link
+  [params.editPost]
+    URL = ''
+    Text = 'Chỉnh sửa'
+    appendFilePath = true
+  
+  # Social icons (hiển thị ở home-info hoặc profile mode)
+  # Danh sách các biểu tượng mạng xã hội sẽ hiển thị dưới subtitle trong profile
+  # Xem danh sách đầy đủ các icon tại: https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-icons/
+  [[params.socialIcons]]
+    name = 'github'
+    url = 'https://github.com/yourusername'
+    title = 'GitHub'
+  
+  [[params.socialIcons]]
+    name = 'email'
+    url = 'mailto:your.email@example.com'
+    title = 'Email'
+  
+  [[params.socialIcons]]
+    name = 'facebook'
+    url = 'https://facebook.com/yourusername'
+    title = 'Facebook'
+  
+  [[params.socialIcons]]
+    name = 'instagram'
+    url = 'https://instagram.com/yourusername'
+    title = 'Instagram'
+  
+  [[params.socialIcons]]
+    name = 'youtube'
+    url = 'https://youtube.com/@yourusername'
+    title = 'YouTube'
+  
+  [[params.socialIcons]]
+    name = 'linkedin'
+    url = 'https://linkedin.com/in/yourusername'
+    title = 'LinkedIn'
+  
+  [[params.socialIcons]]
+    name = 'x'
+    url = 'https://x.com/yourusername'
+    title = 'X (Twitter)'
+  
+  [[params.socialIcons]]
+    name = 'telegram'
+    url = 'https://t.me/yourusername'
+    title = 'Telegram'
+
+# Cấu hình taxonomies
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+  series = 'series'
+
+# Cấu hình sitemap
+[sitemap]
+  changefreq = 'monthly'
+  priority = 0.5
+  filename = 'sitemap.xml'
+
+# Related content
+[related]
+  threshold = 80
+  includeNewer = true
+  toLower = true
+
+  [[related.indices]]
+    name = 'tags'
+    weight = 100
+
+  [[related.indices]]
+    name = 'keywords'
+    weight = 80
+
+  [[related.indices]]
+    name = 'date'
+    weight = 10
+
+# Cấu hình RSS
+[outputFormats.RSS]
+  mediatype = 'application/rss+xml'
+  baseName = 'index'
+
+# Cấu hình minify (tránh warning deprecated)
+[minify]
+  minifyOutput = true
+
+# Cấu hình JSON (cho search)
+[outputFormats.JSON]
+  baseName = 'index'
+  isPlainText = true
+  mediaType = 'application/json'
+  notAlternative = true
+
+# Cấu hình privacy
+[privacy]
+  [privacy.twitter]
+    disable = false
+    simple = false
+  [privacy.vimeo]
+    disable = false
+    simple = false
+  [privacy.youtube]
+    disable = false
+    simple = false
+    privacyEnhanced = true

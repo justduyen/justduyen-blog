@@ -1,0 +1,97 @@
+{{- if .IsPage -}}
+<script>
+  (function () {
+    var article = document.querySelector(".post-single");
+    if (!article) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var bar = document.createElement("div");
+    bar.className = "reading-progress";
+    document.body.appendChild(bar);
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var doc = document.documentElement;
+      var scrollTop = doc.scrollTop || document.body.scrollTop;
+      var scrollHeight = doc.scrollHeight - doc.clientHeight;
+      var progress = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+      bar.style.transform = "scaleX(" + progress.toFixed(4) + ")";
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+  })();
+</script>
+{{- end -}}
+
+<script>
+  (function () {
+    var toggle = document.getElementById("theme-toggle");
+    if (!toggle) return;
+
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function systemTheme() {
+      return mq.matches ? "dark" : "light";
+    }
+
+    function applyTheme(mode) {
+      var html = document.documentElement;
+      if (mode === "auto") {
+        var sys = systemTheme();
+        html.dataset.theme = sys;
+      } else {
+        html.dataset.theme = mode;
+      }
+      toggle.dataset.mode = mode;
+      toggle.setAttribute("aria-label", "Theme: " + mode);
+    }
+
+    function getMode() {
+      return localStorage.getItem("pref-theme") || "auto";
+    }
+
+    function setMode(mode) {
+      if (mode === "auto") {
+        localStorage.removeItem("pref-theme");
+      } else {
+        localStorage.setItem("pref-theme", mode);
+      }
+      applyTheme(mode);
+    }
+
+    function nextMode(mode) {
+      if (mode === "auto") return "light";
+      if (mode === "light") return "dark";
+      return "auto";
+    }
+
+    toggle.addEventListener("click", function (e) {
+      // Override the default PaperMod handler
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var mode = getMode();
+      setMode(nextMode(mode));
+    }, true);
+
+    if (mq.addEventListener) {
+      mq.addEventListener("change", function () {
+        if (getMode() === "auto") applyTheme("auto");
+      });
+    } else if (mq.addListener) {
+      mq.addListener(function () {
+        if (getMode() === "auto") applyTheme("auto");
+      });
+    }
+
+    applyTheme(getMode());
+  })();
+</script>
