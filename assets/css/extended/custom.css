@@ -566,6 +566,26 @@ textarea:focus-visible {
 
 .profile .buttons {
   margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.profile .buttons a,
+.profile .buttons .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  height: 42px;
+  text-align: center;
+}
+
+.profile .buttons .button-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* Terms (tags/categories) grouped layout */
